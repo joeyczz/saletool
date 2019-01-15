@@ -8,6 +8,7 @@ import urlList from '@/utils/urlList';
 import storage from '@/utils/storage';
 import enums from '@/utils/enums';
 import './Login.scss';
+import { injectUnmout } from '@/utils/utils';
 
 // 默认获取验证码显示内容
 const defaultCodeText = '获取验证码';
@@ -20,6 +21,7 @@ const code = 'smsCode';
 // 手机号正则验证
 const phoneRe = /^1[0-9]{10}$/;
 
+@injectUnmout
 class Login extends Component {
 
   static defaultProps = {
@@ -134,6 +136,7 @@ class Login extends Component {
         saleMobile: res.saleMobile
       });
       storage.setObject(enums.userKey, user);
+      this.props.history.push('/');
     }).catch(err => { });
   }
 
