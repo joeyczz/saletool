@@ -134,7 +134,7 @@ class Login extends Component {
         saleMobile: res.saleMobile
       });
       storage.setObject(enums.userKey, user);
-    }).catch(err => {});
+    }).catch(err => { });
   }
 
   render() {

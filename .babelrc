@@ -3,8 +3,17 @@
     "react-app"
   ],
   "plugins": [
-    ["import", {
-      "libraryName": "antd-mobile"
-    }]
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile"
+      },
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
   ]
 }
