@@ -1,89 +1,81 @@
 /**
  * 缓存处理工具
  */
+import Constant from './constant';
+import _ from 'lodash';
+import { Toast } from 'antd-mobile';
 
-var storage, ssStorage;
-var dataStorage;
+const prefix = Constant.prefix;
+
+let lsStorage, ssStorage;
+let storage;
 
 if (!window.localStorage || !window.sessionStorage) {
-  alert("该浏览器不支持，请使用新版Chrome或者Firefox。");
+  Toast.loading('该浏览器不支持，请使用新版Chrome或者Firefox。');
 } else {
-  storage = window.localStorage;
+  lsStorage = window.localStorage;
   ssStorage = window.sessionStorage;
-  dataStorage = {};
+  storage = {};
 }
 
 /**
  * localStorage
  */
-dataStorage.setValue = function (key, value = '') {
-  storage.setItem(key, value);
-};
-
-dataStorage.getValue = function (key) {
-  return storage.getItem(key);
-};
-
-dataStorage.setObject = function (key, object) {
-  if (object !== undefined && object !== null && typeof(object) === "object") {
-    var value = JSON.stringify(object);
-    storage.setItem(key, value);
+storage.lsSetValue = (key, value) => {
+  if (value instanceof Object) {
+    lsStorage.setItem(prefix + key, JSON.stringify(value));
+  } else if (_.isNil(value)) {
+    lsStorage.setItem(prefix + key, '');
   } else {
-    // 错误格式存入空字符串
-    storage.setItem(key, "");
+    lsStorage.setItem(prefix + key, value);
   }
 };
 
-dataStorage.getObject = function (key) {
-  var value = storage.getItem(key);
+storage.lsGetValue = key => {
+  const value = lsStorage.getItem(prefix + key);
   try {
-    return value !== "" ? JSON.parse(value) : value;
-  } catch (e) {
-    return "";
+    return JSON.parse(value);
+  } catch {
+    return value;
   }
 };
 
-dataStorage.removeByKey = function (key) {
-  storage.removeItem(key);
+storage.lsRemove = key => {
+  lsStorage.removeItem(prefix + key);
 };
 
 /**
  * sessionStorage
  */
-dataStorage.ssSetValue = function (key, value) {
-  ssStorage.setItem(key, value);
-};
-
-dataStorage.ssGetValue = function (key) {
-  return ssStorage.getItem(key);
-};
-
-dataStorage.ssSetObject = function (key, object) {
-  if (object !== undefined && object !== null && typeof(object) === "object") {
-    var value = JSON.stringify(object);
-    ssStorage.setItem(key, value);
+storage.ssSetValue = (key, value) => {
+  if (value instanceof Object) {
+    ssStorage.setItem(prefix + key, JSON.stringify(value));
+  } else if (_.isNil(value)) {
+    ssStorage.setItem(prefix + key, '');
+  } else {
+    ssStorage.setItem(prefix + key, value);
   }
 };
 
-dataStorage.ssGetObject = function (key) {
-  var value = ssStorage.getItem(key);
+storage.ssGetValue = key => {
+  const value = ssStorage.getItem(prefix + key);
   try {
-    return value !== "" ? JSON.parse(value) : value;
-  } catch (e) {
-    return "";
+    return JSON.parse(value);
+  } catch {
+    return value;
   }
 };
 
-dataStorage.ssRemoveByKey = function (key) {
-  ssStorage.removeItem(key);
+storage.ssRemoveByKey = key => {
+  ssStorage.removeItem(prefix + key);
 };
 
 /**
  * common
  */
-dataStorage.clearAll = function () {
-  storage.clear();
+storage.clearAll = () => {
+  ssStorage.clear();
   ssStorage.clear();
 };
 
-export default dataStorage
+export default storage;

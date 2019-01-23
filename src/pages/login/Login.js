@@ -7,8 +7,9 @@ import api from '@/utils/api';
 import urlList from '@/utils/urlList';
 import storage from '@/utils/storage';
 import enums from '@/utils/enums';
+import { injectUnmout, setCookie } from '@/utils/utils';
+import Constant from '@/utils/constant';
 import './Login.scss';
-import { injectUnmout } from '@/utils/utils';
 
 // 默认获取验证码显示内容
 const defaultCodeText = '获取验证码';
@@ -57,6 +58,11 @@ class Login extends Component {
       saleMobile: '',
       smsCode: ''
     });
+  }
+
+  componentWillUnmount() {
+    // 清除计时器
+    clearInterval(this.checkCodeTimer);
   }
 
   // methods
@@ -117,6 +123,7 @@ class Login extends Component {
 
   // 登录处理
   loginHandler() {
+    // this.props.history.push('/');
     const param = {
       saleMobile: this.state.saleMobile,
       smsCode: this.state.smsCode
@@ -124,18 +131,23 @@ class Login extends Component {
     Toast.loading('加载中', 0);
     api.post(urlList.saleLoginUrl, param).then(res => {
       Toast.hide();
-      const user = {
-        saleId: res.saleId,
-        saleMobile: res.saleMobile,
-        saleName: res.saleName,
-        spId: res.spId
-      };
-      storage.setObject(enums.cookiesKey, {
+      // 处理token
+      setCookie(Constant.token, res.token);
+      setCookie(Constant.saleId, res.saleId);
+      setCookie(Constant.saleMobile, res.saleMobile);
+      // 设置 缓存 cookie
+      storage.lsSetValue(Constant.cookiesInfo, {
         token: res.token,
         saleId: res.saleId,
         saleMobile: res.saleMobile
       });
-      storage.setObject(enums.userKey, user);
+      // 设置 缓存 用户信息
+      storage.lsSetValue(Constant.userInfo, {
+        saleId: res.saleId,
+        saleMobile: res.saleMobile,
+        saleName: res.saleName,
+        spId: res.spId
+      });
       this.props.history.push('/');
     }).catch(err => { });
   }
