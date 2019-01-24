@@ -1,29 +1,36 @@
-.login-container {
+$loginPrefixCls: 'zd-login';
+$loginFormPrexfixCls: '#{$loginPrefixCls}-form';
+
+.#{$loginPrefixCls} {
 	display: flex;
 	flex-direction: column;
 	position: relative;
 	user-select: none;
 
-	.login-form {
+  &-header-container {
+    height: 278px;
+  }
+  
+	&-form {
 		position: absolute;
 		top: 203px;
 		left: 20px;
 		right: 20px;
 		box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15); /* no */
-		height: 120px;
+		height: 160px;
 		background: #fff;
 		border-radius: 0 0 2px 2px;
 		display: flex;
 		flex-direction: column;
 		padding: 20px 24px;
 
-		&-item {
+		.#{$loginFormPrexfixCls}-item {
 			flex: 1;
 			display: flex;
 			align-items: center;
 			box-sizing: border-box;
 
-			.login-input {
+			.#{$loginFormPrexfixCls}-input {
 				flex: 1;
 
 				.am-list-line::after {
@@ -44,10 +51,10 @@
 				border-bottom: 1px solid #E1E1E1; /* no */
 			}
 
-			.code-btn {
+			.#{$loginFormPrexfixCls}-code-button {
 				height: 20px;
 				line-height: 20px;
-				width: 72px;
+				// width: 84px;
 				padding-left: 13px;
 				border-left: 1px solid #ccc; /* no */
 				display: flex;
@@ -64,7 +71,7 @@
 		}
 	}
 
-	.login-button {
+	&-button {
 		margin: 116px 20px 0;
 		height: 50px;
 		border-radius: 2px;

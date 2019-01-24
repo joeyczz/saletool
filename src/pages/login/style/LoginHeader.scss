@@ -1,21 +1,22 @@
-.login-header {
-  height: 278px;
+$loginPrefixCls: 'zd-login-header';
 
-  .login-bg {
+.#{$loginPrefixCls} {
+
+  &-bg {
     width: 100%;
     display: inline-block;
     border: 0;
     vertical-align: top;
   }
 
-  .login-font {
+  &-font {
     position: absolute;
     top: 47px;
     left: 26px;
     height: 33px;
   }
 
-  .login-version {
+  &-version {
     position: absolute;
     top: 91px;
     left: 26px;
@@ -27,7 +28,7 @@
     color: #fff;
   }
 
-  .login-person {
+  &-person {
     position: absolute;
     top: 167px;
     right: 77px;
@@ -36,7 +37,7 @@
     z-index: 10;
   }
 
-  .login-person1 {
+  &-person1 {
     position: absolute;
     top: 138px;
     left: 134px;

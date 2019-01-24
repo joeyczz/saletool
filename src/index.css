@@ -1,18 +1,16 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-html {
-  height: 100vh;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
   background-color: #fff !important;
-  font-size:14px;
+  font-size: 14px;
   font-family:PingFangSC-Regular;
+  font-weight:400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -20,4 +18,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  border: 0;
+  outline: none;
+  background-color: transparent;
 }

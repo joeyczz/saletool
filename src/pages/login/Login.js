@@ -1,15 +1,16 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
 import { InputItem, Toast, Button } from 'antd-mobile';
-import LoginHeader from './loginHeader/LoginHeader'
 import _ from 'lodash';
 import api from '@/utils/api';
 import urlList from '@/utils/urlList';
 import storage from '@/utils/storage';
-import enums from '@/utils/enums';
 import { injectUnmout, setCookie } from '@/utils/utils';
 import Constant from '@/utils/constant';
-import './Login.scss';
+
+import LoginHeader from './LoginHeader';
+
+import './style/Login.scss';
 
 // 默认获取验证码显示内容
 const defaultCodeText = '获取验证码';
@@ -26,7 +27,7 @@ const phoneRe = /^1[0-9]{10}$/;
 class Login extends Component {
 
   static defaultProps = {
-    prefixCls: 'login-form',
+    prefixCls: 'zd-login',
   };
 
   constructor() {
@@ -123,7 +124,6 @@ class Login extends Component {
 
   // 登录处理
   loginHandler() {
-    // this.props.history.push('/');
     const param = {
       saleMobile: this.state.saleMobile,
       smsCode: this.state.smsCode
@@ -153,35 +153,32 @@ class Login extends Component {
   }
 
   render() {
-    const {
-      prefixCls,
-      className
-    } = this.props;
-    const cls = classnames(className, 'login-container');
+    const { prefixCls, className } = this.props;
+    const cls = classnames(className, `${prefixCls}`);
 
-    const formCls = classnames(className, `${prefixCls}`);
+    const formCls = classnames(className, `${prefixCls}-form`);
     const codeCls = classnames({
-      'code-btn': true,
+      [`${prefixCls}-form-code-button`]: true,
       'disabled': this.state.codeDisabled
     });
 
     return (
       <div className={cls}>
-        <LoginHeader className="login-header" />
+        <LoginHeader className={`${prefixCls}-header-container`} />
         <div className={formCls}>
-          <section className={`${prefixCls}-item`}>
-            <InputItem className="login-input" maxLength="11" placeholder="输入您的手机号码" clear
+          <section className={`${prefixCls}-form-item`}>
+            <InputItem className={`${prefixCls}-form-input`} maxLength="11" placeholder="输入您的手机号码" clear
               value={this.state.saleMobile} onChange={this.handleInputChange.bind(this, phone)} ></InputItem>
           </section>
-          <section className={`${prefixCls}-item`}>
-            <InputItem className="login-input" maxLength="4" placeholder="输入手机验证码" clear
+          <section className={`${prefixCls}-form-item`}>
+            <InputItem className={`${prefixCls}-form-input`} maxLength="4" placeholder="输入手机验证码" clear
               value={this.state.smsCode} onChange={this.handleInputChange.bind(this, code)}></InputItem>
             <span className={codeCls} onClick={_.debounce(this.sendCode, 3 * 1000, { leading: true })}>
               {this.state.codeText}
             </span>
           </section>
         </div>
-        <Button className="login-button" disabled={this.state.buttonDisabled}
+        <Button className={`${prefixCls}-button`} disabled={this.state.buttonDisabled}
           onClick={_.debounce(this.loginHandler, 3 * 1000, { leading: true })}>
           登录
           </Button>
