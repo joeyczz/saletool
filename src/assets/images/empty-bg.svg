@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="208px" height="77px" viewBox="0 0 208 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="85.7216452%" id="linearGradient-1">
+            <stop stop-color="#DDDFE5" stop-opacity="0.512228261" offset="0%"></stop>
+            <stop stop-color="#D9DEE3" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4-4服务菜单-客户信息-copy" transform="translate(-83.000000, -229.000000)">
+            <g id="Group-3" transform="translate(76.000000, 229.000000)">
+                <g id="Group-2">
+                    <path d="M222.031529,83.9842354 C207.570044,69.5227505 190.300458,57.8693675 171.110842,49.9121591 C152.600036,42.2364275 132.302635,38 111.015765,38 C89.7288938,38 69.4314937,42.2364275 50.9206877,49.9121591 C31.7310717,57.8693675 14.4614849,69.5227505 0,83.9842354 L222.031529,83.9842354 Z" id="Oval-2" fill="url(#linearGradient-1)"></path>
+                    <g id="Group" transform="translate(86.000000, 0.000000)">
+                        <rect id="Rectangle-77" fill="#DDDFE5" x="0" y="0" width="52" height="57" rx="4"></rect>
+                        <path d="M6,4 L46,4 C47.6568542,4 49,5.34314575 49,7 L49,48 C49,50.7614237 46.7614237,53 44,53 L8,53 C5.23857625,53 3,50.7614237 3,48 L3,7 C3,5.34314575 4.34314575,4 6,4 Z" id="Rectangle-78" fill="#EFF2F7"></path>
+                        <path d="M16,7 L25,7 L25,16.5 C25,18.9852814 22.9852814,21 20.5,21 L20.5,21 C18.0147186,21 16,18.9852814 16,16.5 L16,7 Z" id="Rectangle-2" fill="#DDDFE5"></path>
+                        <path d="M27,7 L36,7 L36,16.5 C36,18.9852814 33.9852814,21 31.5,21 L31.5,21 C29.0147186,21 27,18.9852814 27,16.5 L27,7 Z" id="Rectangle-2-Copy-2" fill="#DDDFE5"></path>
+                        <path d="M38,7 L44,7 C45.6568542,7 47,8.34314575 47,10 L47,16.5 C47,18.9852814 44.9852814,21 42.5,21 L42.5,21 C40.0147186,21 38,18.9852814 38,16.5 L38,7 Z" id="Rectangle-2-Copy-4" fill="#DDDFE5"></path>
+                        <path d="M8,7 L14,7 L14,16.5 C14,18.9852814 11.9852814,21 9.5,21 L9.5,21 C7.01471863,21 5,18.9852814 5,16.5 L5,10 C5,8.34314575 6.34314575,7 8,7 Z" id="Rectangle-2-Copy-3" fill="#DDDFE5"></path>
+                        <path d="M34,51 L34,44 C34,39.581722 30.418278,36 26,36 C21.581722,36 18,39.581722 18,44 L18,51 L10,51 C7.23857625,51 5,48.7614237 5,46 L5,22 L5.25716211,22 C6.26595376,23.2215033 7.79206306,24 9.5,24 C11.2079369,24 12.7340462,23.2215033 13.7428379,22 L16.2571621,22 C17.2659538,23.2215033 18.7920631,24 20.5,24 C22.2079369,24 23.7340462,23.2215033 24.7428379,22 L27.2571621,22 C28.2659538,23.2215033 29.7920631,24 31.5,24 C33.2079369,24 34.7340462,23.2215033 35.7428379,22 L38.2571621,22 C39.2659538,23.2215033 40.7920631,24 42.5,24 C44.2079369,24 45.7340462,23.2215033 46.7428379,22 L47,22 L47,46 C47,48.7614237 44.7614237,51 42,51 L34,51 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                        <path d="M26,38 L26,38 C29.3137085,38 32,40.6862915 32,44 L32,51 L20,51 L20,44 C20,40.6862915 22.6862915,38 26,38 Z" id="Rectangle-5" fill="#DDDFE5"></path>
+                        <circle id="Oval-3" fill="#DDDFE5" cx="49.5" cy="47.5" r="12.5"></circle>
+                        <circle id="Oval-3-Copy" fill="#FDFEFF" cx="49.5" cy="47.5" r="9.5"></circle>
+                        <rect id="Rectangle-2" fill="#DDDFE5" x="43" y="45" width="13" height="4" rx="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

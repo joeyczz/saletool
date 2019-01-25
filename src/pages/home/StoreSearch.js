@@ -4,11 +4,13 @@ import { InputItem, Button, Picker } from 'antd-mobile';
 import { getRegions } from '@/utils/utils';
 import _ from 'lodash';
 import queryString from 'query-string';
+import { injectUnmout } from '@/utils/utils';
 
 import arrowDownImg from '@/assets/images/arrow-down.svg';
 
 import './style/StoreSearch.scss';
 
+@injectUnmout
 class LoginHeader extends Component {
   static defaultProps = {
     prefixCls: 'zd-store-search',

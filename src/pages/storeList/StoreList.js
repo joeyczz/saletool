@@ -5,7 +5,9 @@ import _ from 'lodash';
 import queryString from 'query-string';
 import api from '@/utils/api';
 import urlList from '@/utils/urlList';
+import { injectUnmout } from '@/utils/utils';
 
+import emptyBgImg from '@/assets/images/empty-bg.svg';
 import './style/StoreList.scss';
 
 class StoreItem extends Component {
@@ -32,6 +34,7 @@ class StoreItem extends Component {
   }
 }
 
+@injectUnmout
 class StoreList extends Component {
   static defaultProps = {
     prefixCls: 'zd-store-list',
@@ -41,6 +44,7 @@ class StoreList extends Component {
     super();
 
     this.state = {
+      // 门店列表
       storeList: [],
     }
 
@@ -76,6 +80,7 @@ class StoreList extends Component {
     console.log('selectStoreHandler', item);
   }
 
+  // 跳转创建新门店
   createStoreHandler() {
     console.log('createStoreHandler');
   }
@@ -84,17 +89,35 @@ class StoreList extends Component {
     const { prefixCls, className } = this.props;
     const cls = classnames(className, `${prefixCls}`);
 
-    const listItems = this.state.storeList.map(item =>
-      <StoreItem key={_.toString(item.id)} store={item}
-        onClick={this.selectStoreHandler.bind(this, item)} />
-    );
+    let content = null;
+    if (_.isEmpty(this.state.storeList)) {
+      content = (
+        <div className={`${prefixCls}-empty`}>
+          <div className={`${prefixCls}-img`}>
+            <img src={emptyBgImg} alt="bg" />
+          </div>
+          <p>后台还没该门店信息，建议您新增一个门店</p>
+        </div>
+      )
+    } else {
+      const listItems = this.state.storeList.map(item =>
+        <StoreItem key={_.toString(item.id)} store={item}
+          onClick={this.selectStoreHandler.bind(this, item)} />
+      );
+
+      content = (
+        <div className={`${prefixCls}-box`}>
+          <p className={`${prefixCls}-title`}>以下内容为本次搜索匹配到的门店信息</p>
+          <section className={`${prefixCls}-content`}>
+            {listItems}
+          </section>
+        </div>
+      );
+    }
 
     return (
       <div className={cls}>
-        <p className={`${prefixCls}-title`}>以下内容为本次搜索匹配到的门店信息</p>
-        <section className={`${prefixCls}-content`}>
-          {listItems}
-        </section>
+        {content}
         <div className={`${prefixCls}-button`}>
           <Button onClick={this.createStoreHandler}>没有我要的，去新增</Button>
         </div>

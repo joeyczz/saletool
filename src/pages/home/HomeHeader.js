@@ -1,9 +1,11 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
-import userLogo from '@/assets/images/user-logo.svg';
+import userLogoImg from '@/assets/images/user-logo.svg';
+import { injectUnmout } from '@/utils/utils';
 
 import './style/HomeHeader.scss';
 
+@injectUnmout
 class HomeHeader extends Component {
   static defaultProps = {
     prefixCls: 'zd-home-header',
@@ -27,7 +29,7 @@ class HomeHeader extends Component {
     return (
       <header className={cls}>
         <div className={`${prefixCls}-logo`}>
-          <img src={userLogo} alt="logo" />
+          <img src={userLogoImg} alt="logo" />
         </div>
         <section className={`${prefixCls}-info`}>
           <p>亲爱的，<span>某某某</span> 你好～</p>

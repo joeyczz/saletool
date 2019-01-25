@@ -1,8 +1,10 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
+import { injectUnmout } from '@/utils/utils';
 
 // import './LoginHeader.scss';
 
+@injectUnmout
 class BusinessCircle extends Component {
   static defaultProps = {
     prefixCls: 'zd-business-circle',
