@@ -44,7 +44,6 @@ class Home extends Component {
     const { prefixCls, className } = this.props;
     const cls = classnames(className, `${prefixCls}`);
 
-    console.log(this.props)
     return (
       <div className={cls}>
         <HomeHeader className={`${prefixCls}-header-container`} />

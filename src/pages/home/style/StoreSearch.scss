@@ -1,4 +1,5 @@
 $storeSearchPrefixCls: 'zd-store-search';
+$storeSearchFormPrefixCls: '#{$storeSearchPrefixCls}-form';
 
 .#{$storeSearchPrefixCls} {
   display: flex;
@@ -6,7 +7,6 @@ $storeSearchPrefixCls: 'zd-store-search';
 
   &-form {
     margin: 10px 10px 0;
-    // width: 355px;
     height: 196px;
     background-color: #fff;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
@@ -24,6 +24,88 @@ $storeSearchPrefixCls: 'zd-store-search';
       text-align: center;
       background: url('../../../assets/images/search-bg-1.svg');
     }
+
+    &-item {
+      margin: 20px 15px 0 20px;
+      position: relative;
+      height: 45px;
+      border: 1px solid #E1E1E1; /* no */
+      flex: 1;
+      display: flex;
+      align-items: center;
+      border-radius: 2px;
+
+      &.disabled {
+        background-color: #F9F9F9;
+      }
+
+      &:before {
+        content: "*";
+        position: absolute;
+        left: -10px;
+        font-size: 14px;
+        color: #FD2949;
+        font-family: PingFangSC-Medium;
+        font-weight: 500;
+      }
+
+      &:last-child {
+        margin-top: 15px;
+      }
+
+      .#{$storeSearchFormPrefixCls}-picker {
+        flex: 1;
+        font-size: 14px;
+        color: #333;
+        padding: 0 15px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        &.placeholder {
+          color: #999;
+        }
+
+        > div {
+          flex: 1;
+        }
+
+        img {
+          position: absolute;
+          top: 20px;
+          right: 10px;
+        }
+
+        .#{$storeSearchFormPrefixCls}-picker-text {
+          display: flex;
+          align-items: center;  
+          height: 45px;
+        }
+      }
+
+      .#{$storeSearchFormPrefixCls}-input {
+        flex: 1;
+        background-color: transparent;
+
+        .am-list-line::after {
+          opacity: 0;
+        }
+
+        input {
+          font-size: 14px;
+          color: #333;
+        }
+
+        input::-webkit-input-placeholder {
+          color: #999;
+        }
+
+        input:disabled {
+          color: #ccc;
+          background-color: transparent;
+        }
+      }
+    }
   }
 
   &-button {
@@ -37,12 +119,12 @@ $storeSearchPrefixCls: 'zd-store-search';
     color: #fff;
 
     &:before {
-			content: none;
+      content: none;
     }
-    
+
     &.am-button-disabled {
-			background: #ccc;
-			opacity: 1;
-		}
+      background: #ccc;
+      opacity: 1;
+    }
   }
 }

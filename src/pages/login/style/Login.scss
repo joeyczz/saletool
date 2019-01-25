@@ -17,18 +17,17 @@ $loginFormPrexfixCls: '#{$loginPrefixCls}-form';
 		left: 20px;
 		right: 20px;
 		box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15); /* no */
-		height: 160px;
+		height: 120px;
 		background: #fff;
 		border-radius: 0 0 2px 2px;
 		display: flex;
 		flex-direction: column;
 		padding: 20px 24px;
 
-		.#{$loginFormPrexfixCls}-item {
+		&-item {
 			flex: 1;
 			display: flex;
 			align-items: center;
-			box-sizing: border-box;
 
 			.#{$loginFormPrexfixCls}-input {
 				flex: 1;
@@ -38,7 +37,8 @@ $loginFormPrexfixCls: '#{$loginPrefixCls}-form';
 				}
 
 				input {
-					font-size: 18px; /* no */
+          font-size: 18px; /* no */
+          color: #333;
 				}
 
 				input::-webkit-input-placeholder {
