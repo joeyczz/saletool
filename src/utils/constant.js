@@ -11,11 +11,4 @@ export default {
   // 销售工具 用户信息
   userInfo: 'user-info',
   
-  // 网络成功code
-  successCode: 200,
-  // 无权限code
-  unauthCode: 600,
-  // 未登录code
-  unloginCode: 800
-
 };

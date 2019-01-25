@@ -1,8 +1,9 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
-import { InputItem, Toast, Button, Picker } from 'antd-mobile';
+import { InputItem, Button, Picker } from 'antd-mobile';
 import { getRegions } from '@/utils/utils';
 import _ from 'lodash';
+import queryString from 'query-string';
 
 import arrowDownImg from '@/assets/images/arrow-down.svg';
 
@@ -15,6 +16,7 @@ class LoginHeader extends Component {
 
   constructor() {
     super();
+    
     this.state = {
       selectedAddress: '',
       district: [],
@@ -37,6 +39,7 @@ class LoginHeader extends Component {
     });
   }
 
+  // 地理位置选择
   regionOnChange(e) {
     const [provinceId, cityId, areaId] = e;
     // 查找数据
@@ -55,20 +58,20 @@ class LoginHeader extends Component {
     });
   }
 
+  // 检查输入 按钮是否disabled
   checkInput() {
-    console.log(this.state.provinceId, this.state.cityId, this.state.areaId, this.state.storeName);
     return this.state.provinceId !== '' && this.state.cityId !== ''
       && this.state.areaId !== '' && this.state.storeName.trim() !== '';
   }
 
+  // 前往门店列表
   confirmHandler() {
     const { provinceId, cityId, areaId, storeName } = this.state;
-    // {
-    //   provinceId, cityId, areaId, storeName
-    // }
     this.props.history.push({
       pathname: 'storeList',
-      search: 'name=1'
+      search: queryString.stringify({
+        provinceId, cityId, areaId, storeName
+      })
     });
   }
 

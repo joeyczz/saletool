@@ -13,5 +13,8 @@ export default {
   getSmsCodeUrl: '/salelogin/client/getSmsCode',
 
   // 登录
-  saleLoginUrl: '/salelogin/client/saleLogin'
+  saleLoginUrl: '/salelogin/client/saleLogin',
+
+  // 查询门店
+  queryStoresUrl: '/saleorder-client/order-query-store',
 };
