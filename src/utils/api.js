@@ -1,7 +1,7 @@
 import axios from 'axios';
 import urlList from './urlList';
 import  enums from './enums';
-import storage from "./storage";
+// import storage from "./storage";
 import { Toast } from 'antd-mobile';
 
 const whiteList = [];

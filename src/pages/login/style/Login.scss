@@ -2,94 +2,96 @@ $loginPrefixCls: 'zd-login';
 $loginFormPrexfixCls: '#{$loginPrefixCls}-form';
 
 .#{$loginPrefixCls} {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	user-select: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  user-select: none;
+  color: #333;
 
-  &-header-container {
-    height: 278px;
-  }
-  
-	&-form {
-		position: absolute;
-		top: 203px;
-		left: 20px;
-		right: 20px;
-		box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.15); /* no */
-		height: 120px;
-		background: #fff;
-		border-radius: 0 0 2px 2px;
-		display: flex;
-		flex-direction: column;
-		padding: 20px 24px;
+  &-form {
+    position: absolute;
+    top: 164px;
+    left: 12px;
+    right: 12px;
+    height: 318px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0px 6px 24px 0px rgba(255, 221, 222, 1);
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
 
-		&-item {
-			flex: 1;
-			display: flex;
-			align-items: center;
+    &-item {
+      height: 50px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #E1E1E1;
+      /* no */
+      margin-top: 20px;
 
-			.#{$loginFormPrexfixCls}-input {
-				flex: 1;
+      &:first-child {
+        margin-top: 48px;
+      }
 
-				.am-list-line::after {
-					opacity: 0;
-				}
+      .#{$loginFormPrexfixCls}-input {
+        flex: 1;
 
-				input {
-          font-size: 18px; /* no */
+        .am-list-line::after {
+          opacity: 0;
+        }
+
+        input {
           color: #333;
-				}
+          font-size: 14px;
+          /* no */
+        }
 
-				input::-webkit-input-placeholder {
-					font-size: 14px; /* no */
-					color: #ccc;
-				}
-			}
+        input::-webkit-input-placeholder {
+          color: #ccc;
+        }
+      }
 
-			&:first-child {
-				border-bottom: 1px solid #E1E1E1; /* no */
-			}
+      .#{$loginFormPrexfixCls}-code-button {
+        height: 20px;
+        line-height: 20px;
+        width: 72px;
+        box-sizing: border-box;
+        text-align: right;
+        border-left: 1px solid #ccc;
+        /* no */
+        color: #FD2949;
+        font-size: 12px;
 
-			.#{$loginFormPrexfixCls}-code-button {
-				height: 20px;
-				line-height: 20px;
-				// width: 84px;
-				padding-left: 13px;
-				border-left: 1px solid #ccc; /* no */
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				color: #FD2949;
-				font-size: 14px;
+        &.disabled {
+          color: #ccc;
+        }
+      }
 
-				&.disabled {
-					color: #ccc;
-				}
-			}
+    }
+  }
 
-		}
-	}
+  &-button {
+    margin: 65px 30px 0;
+    height: 48px;
+    border-radius: 24px;
+    background: #F05B5E;
+    box-shadow: 0px 5px 20px 0px rgba(255, 195, 196, 1);
+    font-size: 16px;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #fff;
 
-	&-button {
-		margin: 116px 20px 0;
-		height: 50px;
-		border-radius: 2px;
-		background: rgba(252, 64, 83, 1);
-		box-shadow: 0 2px 8px 0 rgba(252, 64, 83, 0.5);
-		font-size: 16px;
-		font-family: PingFangSC-Medium;
-		font-weight: 500;
-		color: #fff;
+    &:before {
+      content: none;
+    }
 
-		&:before {
-			content: none;
-		}
-
-		&.am-button-disabled {
-			box-shadow: none;
-			background: #ccc;
-			opacity: 1;
-		}
-	}
+    &.am-button-disabled {
+      box-shadow: none;
+      background: #ccc;
+      opacity: 1;
+    }
+  }
 }

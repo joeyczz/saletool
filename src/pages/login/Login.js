@@ -177,11 +177,12 @@ class Login extends Component {
               {this.state.codeText}
             </span>
           </section>
-        </div>
-        <Button className={`${prefixCls}-button`} disabled={this.state.buttonDisabled}
+          <Button className={`${prefixCls}-button`} disabled={this.state.buttonDisabled}
           onClick={_.debounce(this.loginHandler, 3 * 1000, { leading: true })}>
           登录
           </Button>
+
+        </div>
       </div>
     );
   }
