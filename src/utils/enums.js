@@ -6,6 +6,6 @@ export default {
     // 无权限code
     unauthCode: 600,
     // 未登录code
-    unloginCode: 800
-  }
+    unloginCode: 800,
+  },
 };

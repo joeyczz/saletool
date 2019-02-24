@@ -7,6 +7,7 @@ import urlList from '@/utils/urlList';
 import storage from '@/utils/storage';
 import { injectUnmout, setCookie } from '@/utils/utils';
 import Constant from '@/utils/constant';
+import PropTypes from 'prop-types';
 
 import LoginHeader from './LoginHeader';
 
@@ -25,9 +26,14 @@ const phoneRe = /^1[0-9]{10}$/;
 
 @injectUnmout
 class Login extends Component {
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    className: PropTypes.string,
+  }
 
   static defaultProps = {
     prefixCls: 'zd-login',
+    className: '',
   };
 
   constructor() {
@@ -44,8 +50,8 @@ class Login extends Component {
       // 手机号
       saleMobile: '',
       // 验证码
-      smsCode: ''
-    }
+      smsCode: '',
+    };
 
     // bind this
     this.sendCode = this.sendCode.bind(this);
@@ -57,7 +63,7 @@ class Login extends Component {
     // 初始化手机号 + 验证码
     this.setState({
       saleMobile: '',
-      smsCode: ''
+      smsCode: '',
     });
   }
 
@@ -69,7 +75,8 @@ class Login extends Component {
   // methods
   sendCode() {
     // code disabled 状态 不能点击
-    if (this.state.codeDisabled) return;
+    const { codeDisabled, saleMobile, countTime } = this.state;
+    if (codeDisabled) return;
     // 设置倒计时
     this.setState({
       codeDisabled: true,
@@ -77,89 +84,103 @@ class Login extends Component {
       codeText: '60s',
     });
     // 构建请求参数
-    const param = { saleMobile: this.state.saleMobile };
+    const param = { saleMobile };
     Toast.loading('加载中', 0);
-    api.post(urlList.getSmsCodeUrl, param).then(res => {
-      Toast.hide();
-      // 定时倒计时
-      clearInterval(this.checkCodeTimer);
-      this.checkCodeTimer = setInterval(() => {
-        // 倒计时 -1
-        this.setState(prevState => ({ countTime: prevState.countTime - 1 }));
-        if (this.state.countTime < 0) {
-          // 倒计时完成
-          clearInterval(this.checkCodeTimer);
-          this.setState({
-            codeDisabled: !phoneRe.test(this.state.saleMobile),
-            codeText: defaultCodeText
-          });
-        } else {
-          // 修改倒计时显示秒数
-          this.setState(prevState => ({ codeText: prevState.countTime + 's' }));
-        }
-      }, 1 * 1000);
-    }).catch(err => {
-      // 失败恢复状态
-      this.setState({
-        codeDisabled: !phoneRe.test(this.state.saleMobile),
-        codeText: defaultCodeText
+    api
+      .post(urlList.getSmsCodeUrl, param)
+      .then(() => {
+        Toast.hide();
+        // 定时倒计时
+        clearInterval(this.checkCodeTimer);
+        this.checkCodeTimer = setInterval(() => {
+          // 倒计时 -1
+          this.setState(prevState => ({ countTime: prevState.countTime - 1 }));
+          if (countTime < 0) {
+            // 倒计时完成
+            clearInterval(this.checkCodeTimer);
+            this.setState({
+              codeDisabled: !phoneRe.test(saleMobile),
+              codeText: defaultCodeText,
+            });
+          } else {
+            // 修改倒计时显示秒数
+            this.setState(prevState => ({
+              codeText: `${prevState.countTime}s`,
+            }));
+          }
+        }, 1 * 1000);
+      })
+      .catch(() => {
+        // 失败恢复状态
+        this.setState({
+          codeDisabled: !phoneRe.test(saleMobile),
+          codeText: defaultCodeText,
+        });
       });
-    });
   }
 
   // 处理数据框
   handleInputChange(name, value) {
+    const { smsCode, saleMobile } = this.state;
     this.setState({ [name]: value });
     if (phone === name) {
       this.setState({
         codeDisabled: !phoneRe.test(value),
-        buttonDisabled: !(phoneRe.test(value) && this.state.smsCode.length === 4)
+        buttonDisabled: !(
+          phoneRe.test(value) && smsCode.length === 4
+        ),
       });
     } else if (code === name) {
       this.setState({
-        buttonDisabled: !(phoneRe.test(this.state.saleMobile) && value.length === 4)
+        buttonDisabled: !(
+          phoneRe.test(saleMobile) && value.length === 4
+        ),
       });
     }
   }
 
   // 登录处理
   loginHandler() {
-    const param = {
-      saleMobile: this.state.saleMobile,
-      smsCode: this.state.smsCode
-    };
+    const { saleMobile, smsCode } = this.state;
+    const param = { saleMobile, smsCode };
     Toast.loading('加载中', 0);
-    api.post(urlList.saleLoginUrl, param).then(res => {
-      Toast.hide();
-      // 处理token
-      setCookie(Constant.token, res.token);
-      setCookie(Constant.saleId, res.saleId);
-      setCookie(Constant.saleMobile, res.saleMobile);
-      // 设置 缓存 cookie
-      storage.lsSetValue(Constant.cookiesInfo, {
-        token: res.token,
-        saleId: res.saleId,
-        saleMobile: res.saleMobile
-      });
-      // 设置 缓存 用户信息
-      storage.lsSetValue(Constant.userInfo, {
-        saleId: res.saleId,
-        saleMobile: res.saleMobile,
-        saleName: res.saleName,
-        spId: res.spId
-      });
-      this.props.history.push('/');
-    }).catch(err => { });
+    api
+      .post(urlList.saleLoginUrl, param)
+      .then((res) => {
+        Toast.hide();
+        // 处理token
+        setCookie(Constant.token, res.token);
+        setCookie(Constant.saleId, res.saleId);
+        setCookie(Constant.saleMobile, res.saleMobile);
+        // 设置 缓存 cookie
+        storage.lsSetValue(Constant.cookiesInfo, {
+          token: res.token,
+          saleId: res.saleId,
+          saleMobile: res.saleMobile,
+        });
+        // 设置 缓存 用户信息
+        storage.lsSetValue(Constant.userInfo, {
+          saleId: res.saleId,
+          saleMobile: res.saleMobile,
+          saleName: res.saleName,
+          spId: res.spId,
+        });
+        this.props.history.push('/');
+      })
+      .catch(() => {});
   }
 
   render() {
+    const {
+      codeDisabled, saleMobile, smsCode, buttonDisabled, codeText,
+    } = this.state;
     const { prefixCls, className } = this.props;
     const cls = classnames(className, `${prefixCls}`);
 
     const formCls = classnames(className, `${prefixCls}-form`);
     const codeCls = classnames({
       [`${prefixCls}-form-code-button`]: true,
-      'disabled': this.state.codeDisabled
+      disabled: codeDisabled,
     });
 
     return (
@@ -167,21 +188,38 @@ class Login extends Component {
         <LoginHeader className={`${prefixCls}-header-container`} />
         <div className={formCls}>
           <section className={`${prefixCls}-form-item`}>
-            <InputItem className={`${prefixCls}-form-input`} maxLength="11" placeholder="输入您的手机号码" clear
-              value={this.state.saleMobile} onChange={this.handleInputChange.bind(this, phone)} ></InputItem>
+            <InputItem
+              className={`${prefixCls}-form-input`}
+              maxLength="11"
+              placeholder="输入您的手机号码"
+              clear
+              value={saleMobile}
+              onChange={this.handleInputChange.bind(this, phone)}
+            />
           </section>
           <section className={`${prefixCls}-form-item`}>
-            <InputItem className={`${prefixCls}-form-input`} maxLength="4" placeholder="输入手机验证码" clear
-              value={this.state.smsCode} onChange={this.handleInputChange.bind(this, code)}></InputItem>
-            <span className={codeCls} onClick={_.debounce(this.sendCode, 3 * 1000, { leading: true })}>
-              {this.state.codeText}
-            </span>
+            <InputItem
+              className={`${prefixCls}-form-input`}
+              maxLength="4"
+              placeholder="输入手机验证码"
+              clear
+              value={smsCode}
+              onChange={this.handleInputChange.bind(this, code)}
+            />
+            <button
+              className={codeCls}
+              onClick={_.debounce(this.sendCode, 3 * 1000, { leading: true })}
+            >
+              {codeText}
+            </button>
           </section>
-          <Button className={`${prefixCls}-button`} disabled={this.state.buttonDisabled}
-          onClick={_.debounce(this.loginHandler, 3 * 1000, { leading: true })}>
-          登录
+          <Button
+            className={`${prefixCls}-button`}
+            disabled={buttonDisabled}
+            onClick={_.debounce(this.loginHandler, 3 * 1000, { leading: true })}
+          >
+            登录
           </Button>
-
         </div>
       </div>
     );

@@ -1,5 +1,7 @@
+export const prefix = 'zd-sale-';
+
 export default {
-  prefix: 'zd-sale-',
+  prefix,
 
   token: 'token',
   saleId: 'sale-id',
@@ -10,5 +12,5 @@ export default {
 
   // 销售工具 用户信息
   userInfo: 'user-info',
-  
+
 };

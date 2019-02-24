@@ -6,7 +6,7 @@ const userInfo = (state = {}, action) => {
     case 'SET_USER_INFO':
       return action.item;
     case 'REMOVE_USER_INFO':
-      return {}
+      return {};
     default:
       return state;
   }

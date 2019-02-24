@@ -1,13 +1,11 @@
-$loginPrefixCls: 'zd-login';
-$loginFormPrexfixCls: '#{$loginPrefixCls}-form';
-
+$loginPrefixCls: "zd-login";
+$loginFormPrexfixCls: "#{$loginPrefixCls}-form";
 .#{$loginPrefixCls} {
   display: flex;
   flex-direction: column;
   position: relative;
   user-select: none;
   color: #333;
-
   &-form {
     position: absolute;
     top: 164px;
@@ -22,72 +20,57 @@ $loginFormPrexfixCls: '#{$loginPrefixCls}-form';
     display: flex;
     flex-direction: column;
     padding: 0 20px;
-
     &-item {
       height: 50px;
       box-sizing: border-box;
       display: flex;
       align-items: center;
-      border-bottom: 1px solid #E1E1E1;
-      /* no */
+      border-bottom: 1px solid #e1e1e1; /* no */
       margin-top: 20px;
-
       &:first-child {
         margin-top: 48px;
       }
-
       .#{$loginFormPrexfixCls}-input {
         flex: 1;
-
         .am-list-line::after {
           opacity: 0;
         }
-
         input {
           color: #333;
-          font-size: 14px;
-          /* no */
+          font-size: 14px; /* no */
         }
-
         input::-webkit-input-placeholder {
           color: #ccc;
         }
       }
-
       .#{$loginFormPrexfixCls}-code-button {
         height: 20px;
         line-height: 20px;
-        width: 72px;
+        width: 72px; /* no */
         box-sizing: border-box;
         text-align: right;
-        border-left: 1px solid #ccc;
-        /* no */
-        color: #FD2949;
+        border-left: 1px solid #ccc; /* no */
+        color: #fd2949;
         font-size: 12px;
-
         &.disabled {
           color: #ccc;
         }
       }
-
     }
   }
-
   &-button {
     margin: 65px 30px 0;
     height: 48px;
     border-radius: 24px;
-    background: #F05B5E;
+    background: #f05b5e;
     box-shadow: 0px 5px 20px 0px rgba(255, 195, 196, 1);
     font-size: 16px;
     font-family: PingFangSC-Medium;
     font-weight: 500;
     color: #fff;
-
     &:before {
       content: none;
     }
-
     &.am-button-disabled {
       box-shadow: none;
       background: #ccc;

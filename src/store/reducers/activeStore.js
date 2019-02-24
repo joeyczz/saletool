@@ -6,7 +6,7 @@ const activeStore = (state = {}, action) => {
     case 'SET_ACTIVE_STORE':
       return action.item;
     case 'REMOVE_ACTIVE_STORE':
-      return {}
+      return {};
     default:
       return state;
   }

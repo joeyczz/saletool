@@ -1,21 +1,21 @@
 /**
  * 缓存处理工具
  */
-import Constant from './constant';
 import _ from 'lodash';
 import { Toast } from 'antd-mobile';
+import { prefix } from './constant';
 
-const prefix = Constant.prefix;
+// const { prefix } = Constant;
 
-let lsStorage, ssStorage;
-let storage;
+let lsStorage;
+let ssStorage;
+const storage = {};
 
 if (!window.localStorage || !window.sessionStorage) {
   Toast.loading('该浏览器不支持，请使用新版Chrome或者Firefox。');
 } else {
   lsStorage = window.localStorage;
   ssStorage = window.sessionStorage;
-  storage = {};
 }
 
 /**
@@ -31,7 +31,7 @@ storage.lsSetValue = (key, value) => {
   }
 };
 
-storage.lsGetValue = key => {
+storage.lsGetValue = (key) => {
   const value = lsStorage.getItem(prefix + key);
   try {
     return JSON.parse(value);
@@ -40,7 +40,7 @@ storage.lsGetValue = key => {
   }
 };
 
-storage.lsRemove = key => {
+storage.lsRemove = (key) => {
   lsStorage.removeItem(prefix + key);
 };
 
@@ -57,7 +57,7 @@ storage.ssSetValue = (key, value) => {
   }
 };
 
-storage.ssGetValue = key => {
+storage.ssGetValue = (key) => {
   const value = ssStorage.getItem(prefix + key);
   try {
     return JSON.parse(value);
@@ -66,7 +66,7 @@ storage.ssGetValue = key => {
   }
 };
 
-storage.ssRemoveByKey = key => {
+storage.ssRemoveByKey = (key) => {
   ssStorage.removeItem(prefix + key);
 };
 

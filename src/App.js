@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 
 import reducers from './store/reducers/index';
 
@@ -12,12 +17,11 @@ import StoreList from '@/pages/storeList/StoreList';
 // const store = createStore(reducers);
 
 const store = createStore(
-  reducers , /* preloadedState, */
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);   
+  reducers /* preloadedState, */,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
 
 class App extends Component {
-
   componentWillMount() {
     console.log(this.props);
   }
@@ -27,10 +31,10 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <Switch>
-            <Route path="/login" component={Login}></Route>
-            <Route path="/storeList" component={StoreList}></Route>
-            <Route path="/" component={Home}></Route>
-            <Redirect to="/"></Redirect>
+            <Route path="/login" component={Login} />
+            <Route path="/storeList" component={StoreList} />
+            <Route path="/" component={Home} />
+            <Redirect to="/" />
           </Switch>
         </Router>
       </Provider>

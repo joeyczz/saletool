@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { injectUnmout } from '@/utils/utils';
 
-import HomeHeader from './HomeHeader'
+import PropTypes from 'prop-types';
+import HomeHeader from './HomeHeader';
 import StoreSearch from './StoreSearch';
 import BusinessCircle from './BusinessCicle';
 
@@ -16,16 +17,21 @@ import './style/Home.scss';
 
 @injectUnmout
 class Home extends Component {
+  static propTypes = {
+    prefixCls: PropTypes.string,
+    className: PropTypes.string,
+  }
 
   static defaultProps = {
     prefixCls: 'zd-home',
+    className: '',
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: false,
-    }
+      // isLogin: false,
+    };
 
     // bind this
     this.goLogin = this.goLogin.bind(this);
@@ -41,7 +47,7 @@ class Home extends Component {
   }
 
   render() {
-    const { prefixCls, className } = this.props;
+    const { prefixCls, className, match } = this.props;
     const cls = classnames(className, `${prefixCls}`);
 
     return (
@@ -49,15 +55,15 @@ class Home extends Component {
         <HomeHeader className={`${prefixCls}-header-container`} />
 
         <div className={`${prefixCls}-tabs`}>
-          <div className='active'>服务菜单</div>
+          <div className="active">服务菜单</div>
           <div>商圈报告</div>
         </div>
 
         <div className={`${prefixCls}-views`}>
           <Switch>
             <Route path="/businessCircle" component={BusinessCircle} />
-            <Route exact path={this.props.match.path} component={StoreSearch} />
-            <Redirect to="/"></Redirect>
+            <Route exact path={match.path} component={StoreSearch} />
+            <Redirect to="/" />
           </Switch>
         </div>
       </div>

@@ -4,7 +4,7 @@ import userInfo from './userInfo';
 
 const reducers = combineReducers({
   activeStore,
-  userInfo
+  userInfo,
 });
 
 export default reducers;
