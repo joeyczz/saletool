@@ -14,10 +14,6 @@ import Login from '@/pages/login/Login';
 import Home from '@/pages/home/Home';
 import StoreList from '@/pages/storeList/StoreList';
 
-let a;
-for (let i = 1; i < 10; i++) {
-  console.log(i);
-}
 // const store = createStore(reducers);
 
 const store = createStore(
