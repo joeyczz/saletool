@@ -10,11 +10,8 @@ export default {
   diggerHeaderUrl: '/digger-api',
 
   // 获取验证码
-  getSmsCodeUrl: '/salelogin/client/getSmsCode',
+  getSmsCodeUrl: '/sale/salelogin/client/getSmsCode',
 
   // 登录
-  saleLoginUrl: '/salelogin/client/saleLogin',
-
-  // 查询门店
-  queryStoresUrl: '/saleorder-client/order-query-store',
+  saleLoginUrl: '/sale/salelogin/client/saleLogin',
 };

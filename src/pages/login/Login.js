@@ -75,7 +75,7 @@ class Login extends Component {
   // methods
   sendCode() {
     // code disabled 状态 不能点击
-    const { codeDisabled, saleMobile, countTime } = this.state;
+    const { codeDisabled, saleMobile } = this.state;
     if (codeDisabled) return;
     // 设置倒计时
     this.setState({
@@ -95,13 +95,14 @@ class Login extends Component {
         this.checkCodeTimer = setInterval(() => {
           // 倒计时 -1
           this.setState(prevState => ({ countTime: prevState.countTime - 1 }));
+          const { countTime } = this.state;
           if (countTime < 0) {
             // 倒计时完成
             clearInterval(this.checkCodeTimer);
-            this.setState({
-              codeDisabled: !phoneRe.test(saleMobile),
+            this.setState(prevState => ({
+              codeDisabled: !phoneRe.test(prevState.saleMobile),
               codeText: defaultCodeText,
-            });
+            }));
           } else {
             // 修改倒计时显示秒数
             this.setState(prevState => ({
@@ -112,26 +113,29 @@ class Login extends Component {
       })
       .catch(() => {
         // 失败恢复状态
-        this.setState({
-          codeDisabled: !phoneRe.test(saleMobile),
+        this.setState(prevState => ({
+          codeDisabled: !phoneRe.test(prevState.saleMobile),
           codeText: defaultCodeText,
-        });
+        }));
       });
   }
 
   // 处理数据框
   handleInputChange(name, value) {
-    const { smsCode, saleMobile } = this.state;
     this.setState({ [name]: value });
     if (PHONE === name) {
-      this.setState({
+      this.setState(prevState => ({
         codeDisabled: !phoneRe.test(value),
-        buttonDisabled: !(phoneRe.test(value) && smsCode.length === 4),
-      });
+        buttonDisabled: !(
+          phoneRe.test(value) && prevState.smsCode.length === 4
+        ),
+      }));
     } else if (CODE === name) {
-      this.setState({
-        buttonDisabled: !(phoneRe.test(saleMobile) && value.length === 4),
-      });
+      this.setState(prevState => ({
+        buttonDisabled: !(
+          phoneRe.test(prevState.saleMobile) && value.length === 4
+        ),
+      }));
     }
   }
 
