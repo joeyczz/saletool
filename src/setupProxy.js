@@ -3,7 +3,7 @@ const proxy = require('http-proxy-middleware');
 module.exports = app => {
   app.use(
     proxy('/api', {
-      target: 'https://api-dev.orderhandler.com/',
+      target: 'https://api-test.orderhandler.com/',
       changeOrigin: true,
       secure: false,
       pathRewrite: {

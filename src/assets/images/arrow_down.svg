@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="10px" viewBox="0 0 14 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 21</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="掌单销售工具" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1门店列表1-1" transform="translate(-130.000000, -277.000000)">
+            <rect fill="#F1F1F1" x="0" y="0" width="750" height="1334"></rect>
+            <rect id="Rectangle-19" fill="#FFFFFF" x="0" y="128" width="750" height="202"></rect>
+            <g id="返回" transform="translate(137.000000, 282.000000) scale(1, -1) rotate(90.000000) translate(-137.000000, -282.000000) translate(130.000000, 275.000000)" fill="#000000" fill-rule="nonzero">
+                <polygon id="Shape" points="11.0736943 1.24112729 9.83256707 0 4.0317669 5.80080016 4.02884178 5.79816756 2.8 7.02671684 2.80292511 7.02964194 2.8 7.03227456 4.04112727 8.27340184 4.04375988 8.27076923 9.76236426 13.9893736 10.991206 12.7602393 5.27260167 7.04192745"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -4,6 +4,7 @@ import { injectUnmout } from '@/utils/utils';
 import PropTypes from 'prop-types';
 
 import Tabbar from '@/components/Tabbar';
+import HomeHeader from './HomeHeader';
 
 // import _ from 'lodash';
 // import api from '@/utils/api';
@@ -31,12 +32,16 @@ class Home extends Component {
     };
 
     // bind this
+    this.filterHandler = this.filterHandler.bind(this);
     this.goLogin = this.goLogin.bind(this);
   }
 
   componentDidMount() {
-    // 初始化手机号 + 验证码
     // this.setState({});
+  }
+
+  filterHandler(item) {
+    console.log(this, item);
   }
 
   goLogin() {
@@ -51,7 +56,7 @@ class Home extends Component {
 
     return (
       <div className={cls}>
-        Me
+        <HomeHeader filterHandler={this.filterHandler} />
         <Tabbar selectedKey="home" />
       </div>
     );
