@@ -76,7 +76,7 @@
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint --ext .js src/ --fix",
-    "precommit": "yarn lint",
+    "precommit": "npm run lint",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
