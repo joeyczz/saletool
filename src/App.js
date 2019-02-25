@@ -14,11 +14,12 @@ import Login from '@/pages/login/Login';
 import Home from '@/pages/home/Home';
 import StoreList from '@/pages/storeList/StoreList';
 
+let a;
 // const store = createStore(reducers);
 
 const store = createStore(
   reducers /* preloadedState, */,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 class App extends Component {

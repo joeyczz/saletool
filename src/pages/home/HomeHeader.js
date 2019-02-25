@@ -11,7 +11,7 @@ class HomeHeader extends Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     prefixCls: 'zd-home-header',
@@ -40,15 +40,18 @@ class HomeHeader extends Component {
         </div>
         <section className={`${prefixCls}-info`}>
           <p>
-亲爱的，
-<span>某某某</span>
-{' '}
-你好～
+            亲爱的，
+            <span>某某某</span>
+            你好～
           </p>
-          <p>买和不买永远不是价格的问题，而是价值的问题。 小哥哥、小姐姐加油！</p>
+          <p>
+            买和不买永远不是价格的问题，而是价值的问题。 小哥哥、小姐姐加油！
+          </p>
         </section>
         <div className={`${prefixCls}-logout`}>
-          <button onClick={this.logoutHandler}>退出</button>
+          <button type="button" onClick={this.logoutHandler}>
+            退出
+          </button>
         </div>
       </header>
     );

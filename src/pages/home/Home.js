@@ -20,7 +20,7 @@ class Home extends Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     prefixCls: 'zd-home',
@@ -43,10 +43,13 @@ class Home extends Component {
   }
 
   goLogin() {
-    this.props.history.push('login');
+    // eslint-disable-next-line react/prop-types
+    const { history } = this.props;
+    history.push('login');
   }
 
   render() {
+    // eslint-disable-next-line react/prop-types
     const { prefixCls, className, match } = this.props;
     const cls = classnames(className, `${prefixCls}`);
 

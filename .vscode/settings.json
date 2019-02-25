@@ -1,9 +1,9 @@
 {
   "[scss]": {},
-  "editor.formatOnPaste": true,
   "files.associations": {
     "*.js": "javascriptreact"
   },
   "javascript.implicitProjectConfig.experimentalDecorators": true,
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  "editor.formatOnSave": true
 }

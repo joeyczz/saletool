@@ -1,5 +1,5 @@
 module.exports = {
-  extends: "airbnb",
+  extends: ["airbnb", "prettier"],
   parser: "babel-eslint",
   env: {
     browser: true,
@@ -10,21 +10,21 @@ module.exports = {
     Babel: true,
     React: true
   },
-  plugins: ["react"],
+  plugins: ["prettier", "react"],
   rules: {
-    quotes: [1, "single"],
-    "global-require": "off",
+    // "global-require": "off",
+    // "no-new-func": "off",
+    // "no-restricted-syntax": "off",
+    "prettier/prettier": "error",
     "import/no-unresolved": "off",
     "no-underscore-dangle": "off",
-    "no-new-func": "off",
     "no-param-reassign": "off",
     "react/prefer-stateless-function": "off",
-    "react/no-multi-comp": "off",
+    "react/no-multi-comp": "off", 
     "react/jsx-no-bind": "off",
     "react/jsx-indent": "off",
     "react/jsx-first-prop-new-line": "off",
     "react/jsx-filename-extension": "off",
-    "no-restricted-syntax": "off",
     // allow debugger during development
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-console": ["error", { allow: ["log", "warn", "error"] }]

@@ -18,13 +18,13 @@ const http = axios.create({
 /**
  * 响应拦截器
  */
-http.interceptors.response.use((res) => {
+http.interceptors.response.use(res => {
   const curUrl = res.config.url.replace(urlList.headerUrl, '');
   // 白名单不用考虑code
   if (
-    (res.status === enums.networkStatus.successCode
-      && res.data.code === enums.networkStatus.successCode)
-    || whiteList.includes(curUrl)
+    (res.status === enums.networkStatus.successCode &&
+      res.data.code === enums.networkStatus.successCode) ||
+    whiteList.includes(curUrl)
   ) {
     return res.data;
   }
@@ -54,7 +54,7 @@ function apiAxios(method, url, params) {
     params: method === 'GET' || method === 'DELETE' ? params : null,
   })
     .then(res => res)
-    .catch((err) => {
+    .catch(err => {
       Toast.hide();
       Toast.info(err.message);
       return Promise.reject(err);

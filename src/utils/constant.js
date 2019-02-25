@@ -12,5 +12,4 @@ export default {
 
   // 销售工具 用户信息
   userInfo: 'user-info',
-
 };

@@ -31,13 +31,17 @@ class StoreItem extends Component {
   };
 
   render() {
-    const {
-      prefixCls, className, store, onClick,
-    } = this.props;
+    const { prefixCls, className, store, onClick } = this.props;
     const cls = classnames(className, `${prefixCls}`);
 
     return (
-      <div className={cls} onClick={onClick} role="button" tabIndex={0}>
+      <div
+        className={cls}
+        onClick={onClick}
+        onKeyUp={onClick}
+        role="button"
+        tabIndex={0}
+      >
         <p className={`${prefixCls}-info`}>
           <span>{store.storeName || ''}</span>
           <span>{`${store.linkman || ''}(${store.phone || ''})`}</span>
@@ -53,13 +57,11 @@ class StoreList extends Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
-    location: PropTypes.shape(),
   };
 
   static defaultProps = {
     prefixCls: 'zd-store-list',
     className: '',
-    location: {},
   };
 
   constructor() {
@@ -82,10 +84,10 @@ class StoreList extends Component {
 
   // 获取门店列表
   getStoreList() {
+    // eslint-disable-next-line react/prop-types
     const { location } = this.props;
-    const {
-      provinceId, cityId, areaId, storeName,
-    } = queryString.parse(location.search);
+    const search = queryString.parse(location.search);
+    const { provinceId, cityId, areaId, storeName } = search;
     const param = {
       tradeProviceId: provinceId,
       tradeCityId: cityId,
@@ -95,7 +97,7 @@ class StoreList extends Component {
     Toast.loading('加载中', 0);
     api
       .post(urlList.queryStoresUrl, param)
-      .then((res) => {
+      .then(res => {
         Toast.hide();
         console.log(res);
         this.setState({ storeList: res.storeInfo || [] });

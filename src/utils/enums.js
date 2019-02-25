@@ -1,5 +1,4 @@
 export default {
-
   networkStatus: {
     // 网络成功code
     successCode: 200,

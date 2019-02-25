@@ -29,7 +29,7 @@ class Login extends Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     prefixCls: 'zd-login',
@@ -126,15 +126,11 @@ class Login extends Component {
     if (phone === name) {
       this.setState({
         codeDisabled: !phoneRe.test(value),
-        buttonDisabled: !(
-          phoneRe.test(value) && smsCode.length === 4
-        ),
+        buttonDisabled: !(phoneRe.test(value) && smsCode.length === 4),
       });
     } else if (code === name) {
       this.setState({
-        buttonDisabled: !(
-          phoneRe.test(saleMobile) && value.length === 4
-        ),
+        buttonDisabled: !(phoneRe.test(saleMobile) && value.length === 4),
       });
     }
   }
@@ -146,7 +142,7 @@ class Login extends Component {
     Toast.loading('加载中', 0);
     api
       .post(urlList.saleLoginUrl, param)
-      .then((res) => {
+      .then(res => {
         Toast.hide();
         // 处理token
         setCookie(Constant.token, res.token);
@@ -165,14 +161,20 @@ class Login extends Component {
           saleName: res.saleName,
           spId: res.spId,
         });
-        this.props.history.push('/');
+        // eslint-disable-next-line react/prop-types
+        const { history } = this.props;
+        history.push('/');
       })
       .catch(() => {});
   }
 
   render() {
     const {
-      codeDisabled, saleMobile, smsCode, buttonDisabled, codeText,
+      codeDisabled,
+      saleMobile,
+      smsCode,
+      buttonDisabled,
+      codeText,
     } = this.state;
     const { prefixCls, className } = this.props;
     const cls = classnames(className, `${prefixCls}`);
@@ -207,6 +209,7 @@ class Login extends Component {
               onChange={this.handleInputChange.bind(this, code)}
             />
             <button
+              type="button"
               className={codeCls}
               onClick={_.debounce(this.sendCode, 3 * 1000, { leading: true })}
             >

@@ -1,20 +1,24 @@
 const proxy = require('http-proxy-middleware');
 
-module.exports = (app) => {
-  app.use(proxy('/api', {
-    target: 'https://api-dev.orderhandler.com/',
-    changeOrigin: true,
-    secure: false,
-    pathRewrite: {
-      '^/api': '',
-    },
-  }));
-  app.use(proxy('/digger-api', {
-    target: 'https://digger.orderhandler.com/',
-    changeOrigin: true,
-    secure: false,
-    pathRewrite: {
-      '^/digger-api': '',
-    },
-  }));
+module.exports = app => {
+  app.use(
+    proxy('/api', {
+      target: 'https://api-dev.orderhandler.com/',
+      changeOrigin: true,
+      secure: false,
+      pathRewrite: {
+        '^/api': '',
+      },
+    })
+  );
+  app.use(
+    proxy('/digger-api', {
+      target: 'https://digger.orderhandler.com/',
+      changeOrigin: true,
+      secure: false,
+      pathRewrite: {
+        '^/digger-api': '',
+      },
+    })
+  );
 };

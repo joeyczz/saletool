@@ -11,7 +11,7 @@ class LoginHeader extends Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     prefixCls: 'zd-login-header',
