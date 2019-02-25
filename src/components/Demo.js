@@ -3,25 +3,25 @@ import React, { Component } from 'react';
 import { injectUnmout } from '@/utils/utils';
 import PropTypes from 'prop-types';
 
-// import './LoginHeader.scss';
+// import './style/Demo.scss';
 
 @injectUnmout
-class BusinessCircle extends Component {
+class Demo extends Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     className: PropTypes.string,
   };
 
   static defaultProps = {
-    prefixCls: 'zd-business-circle',
+    prefixCls: 'zd-demo',
     className: '',
   };
 
   render() {
     const { prefixCls, className } = this.props;
-    const cls = classnames(className, `${prefixCls}`);
-    return <div className={cls}>zd-business-circle</div>;
+    const cls = classnames(className, prefixCls);
+    return <div className={cls}>demo</div>;
   }
 }
 
-export default BusinessCircle;
+export default Demo;

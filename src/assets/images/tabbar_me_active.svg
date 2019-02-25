@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="40px" viewBox="0 0 38 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 20</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="750" height="98"></rect>
+        <filter x="-1.1%" y="-9.2%" width="102.1%" height="116.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="-1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="掌单销售工具" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="3我的1-1" transform="translate(-606.000000, -1253.000000)">
+            <rect fill="#FFFFFF" x="0" y="0" width="750" height="1334"></rect>
+            <g id="Group-4" transform="translate(0.000000, 1238.000000)">
+                <g id="Rectangle-Copy">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="我的-copy-2" transform="translate(605.000000, 15.000000)" fill="#EE5053">
+                    <path d="M25.3198129,20.6452314 C28.7534414,18.8037457 31.0361843,15.1015314 30.8635557,10.8814314 C30.6333271,5.45280286 26.2405557,1.06003143 20.83117,0.810688571 C14.7503414,0.542145714 9.76292714,5.37608857 9.76292714,11.36096 C9.76292714,15.3701171 12.00727,18.8613029 15.3066271,20.6452314 C8.66951286,22.4292029 3.45195571,27.70436 1.72549857,34.3798314 C1.09249857,36.81596 2.93402714,39.1753743 5.44687,39.1753743 L35.17957,39.1753743 C37.6924129,39.1753743 39.5147843,36.81596 38.9009414,34.3798314 C37.1744843,27.70436 31.9568843,22.44836 25.3198129,20.6452314" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

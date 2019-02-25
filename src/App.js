@@ -12,7 +12,8 @@ import reducers from './store/reducers/index';
 
 import Login from '@/pages/login/Login';
 import Home from '@/pages/home/Home';
-import StoreList from '@/pages/storeList/StoreList';
+import Report from '@/pages/report/Report';
+import Me from '@/pages/me/Me';
 
 // const store = createStore(reducers);
 
@@ -32,7 +33,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/login" component={Login} />
-            <Route path="/storeList" component={StoreList} />
+            <Route path="/report" component={Report} />
+            <Route path="/me" component={Me} />
             <Route path="/" component={Home} />
             <Redirect to="/" />
           </Switch>

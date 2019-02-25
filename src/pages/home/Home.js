@@ -1,12 +1,9 @@
 import classnames from 'classnames';
 import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
 import { injectUnmout } from '@/utils/utils';
-
 import PropTypes from 'prop-types';
-import HomeHeader from './HomeHeader';
-import StoreSearch from './StoreSearch';
-import BusinessCircle from './BusinessCicle';
+
+import Tabbar from '@/components/Tabbar';
 
 // import _ from 'lodash';
 // import api from '@/utils/api';
@@ -49,26 +46,13 @@ class Home extends Component {
   }
 
   render() {
-    // eslint-disable-next-line react/prop-types
-    const { prefixCls, className, match } = this.props;
+    const { prefixCls, className } = this.props;
     const cls = classnames(className, `${prefixCls}`);
 
     return (
       <div className={cls}>
-        <HomeHeader className={`${prefixCls}-header-container`} />
-
-        <div className={`${prefixCls}-tabs`}>
-          <div className="active">服务菜单</div>
-          <div>商圈报告</div>
-        </div>
-
-        <div className={`${prefixCls}-views`}>
-          <Switch>
-            <Route path="/businessCircle" component={BusinessCircle} />
-            <Route exact path={match.path} component={StoreSearch} />
-            <Redirect to="/" />
-          </Switch>
-        </div>
+        Me
+        <Tabbar selectedKey="home" />
       </div>
     );
   }
