@@ -9,7 +9,7 @@ export const injectUnmout = target => {
   const next = target.prototype.componentWillUnmount;
   // eslint-disable-next-line func-names
   target.prototype.componentWillUnmount = function(...args) {
-    if (next) next.call(this, args);
+    if (next) next.call(this, ...args);
     this.unmount = true;
   };
   // 对setState的改装，setState查看目前是否已经销毁
@@ -17,7 +17,7 @@ export const injectUnmout = target => {
   // eslint-disable-next-line func-names
   target.prototype.setState = function(...args) {
     if (this.unmount) return;
-    setState.call(this, args);
+    setState.call(this, ...args);
   };
 };
 

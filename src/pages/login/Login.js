@@ -18,9 +18,9 @@ const defaultCodeText = '获取验证码';
 // 默认倒计时时间
 const defaultCountTime = 60;
 // 手机号 参数名
-const phone = 'saleMobile';
+const PHONE = 'saleMobile';
 // 手机验证码 参数名
-const code = 'smsCode';
+const CODE = 'smsCode';
 // 手机号正则验证
 const phoneRe = /^1[0-9]{10}$/;
 
@@ -123,12 +123,12 @@ class Login extends Component {
   handleInputChange(name, value) {
     const { smsCode, saleMobile } = this.state;
     this.setState({ [name]: value });
-    if (phone === name) {
+    if (PHONE === name) {
       this.setState({
         codeDisabled: !phoneRe.test(value),
         buttonDisabled: !(phoneRe.test(value) && smsCode.length === 4),
       });
-    } else if (code === name) {
+    } else if (CODE === name) {
       this.setState({
         buttonDisabled: !(phoneRe.test(saleMobile) && value.length === 4),
       });
@@ -196,7 +196,7 @@ class Login extends Component {
               placeholder="输入您的手机号码"
               clear
               value={saleMobile}
-              onChange={this.handleInputChange.bind(this, phone)}
+              onChange={this.handleInputChange.bind(this, PHONE)}
             />
           </section>
           <section className={`${prefixCls}-form-item`}>
@@ -206,7 +206,7 @@ class Login extends Component {
               placeholder="输入手机验证码"
               clear
               value={smsCode}
-              onChange={this.handleInputChange.bind(this, code)}
+              onChange={this.handleInputChange.bind(this, CODE)}
             />
             <button
               type="button"
