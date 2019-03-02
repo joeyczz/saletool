@@ -2,60 +2,104 @@ $homePrefixCls: 'zd-home';
 
 .#{$homePrefixCls} {
   min-height: 100vh;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   display: flex;
   flex-direction: column;
   position: relative;
   user-select: none;
   align-items: center;
 
-  &-header-container {
-    height: 75px;
-  }
-
-  &-tabs {
+  .#{$homePrefixCls}-store-list {
+    margin: 100px 0 48px;
+    // padding: 10px;
+    box-sizing: border-box;
     width: 100%;
-    height: 45px;
-    min-height: 45px;
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 9;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 150px) !important;
+    overflow: hidden;
 
-    div {
-      flex: 1;
-      font-size: 13px;
-      color: #999;
-      background-color: #F9F9F9;
+    > .am-pull-to-refresh-content-wrapper {
+      box-sizing: border-box;
+      height: 100%;
+      padding: 10px;
+    }
+
+    &.empty {
+      background-color: #fff;
+      padding: 0;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      &.active {
-        color: #FD2949;
-        font-family:PingFangSC-Medium;
-        font-weight:500;
-        border-top: 2px solid #FD2949;
-        background-color: #fff;
+      img {
+        width: 202px;
+        height: auto;
+      }
+      p {
+        color: #999;
+        font-size: 15px;
       }
     }
 
-  }
+    .#{$homePrefixCls}-store-list-item {
+      background-color: #fff;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      margin-bottom: 10px;
+      height: 120px;
+      overflow: hidden;
+      position: relative;
 
-  &-views {
-    width: 100%;
-    // height: 900px;
+      .mark {
+        position: absolute;
+        top: 8px;
+        left: -17px;
+        width: 72px;
+        text-align: center;
+        height: 20px;
+        line-height: 20px;
+        font-size: 10px;
+        color: #fff;
+        background: #fc4053;
+        transform: rotate(-45deg);
+      }
 
-    > button {
-      margin-top: 200px;
-      width: 320px;
-      height: 50px;
-      background: #c00;
-      border: 0;
-      color: #fff;
-      font-size: 18px;
+      .info {
+        margin: 30px 16px 0 25px;
+        display: flex;
+        align-items: center;
+
+        .name {
+          flex: 1;
+          font-size: 16px;
+          color: #333;
+          font-family: PingFangSC-Medium;
+          font-weight: 500;
+        }
+
+        .distance {
+          width: 45px;
+          text-align: right;
+          font-size: 12px;
+          color: #666;
+        }
+      }
+
+      .address {
+        margin: 10px 16px 0 25px;
+        font-size: 12px;
+        color: #999;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .message {
+        margin: 10px 16px 0 25px;
+        text-align: right;
+        font-size: 12px;
+        color: #333;
+      }
     }
   }
 }

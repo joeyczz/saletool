@@ -196,14 +196,23 @@ class HomeHeader extends Component {
 
     // 下拉选项容器
     const selectContainer = show ? (
-      <section
+      <div
         className={`${prefixCls}-filter-select`}
-        // onClick={this.closeSelectHandler}
-        // onKeyPress={this.closeSelectHandler}
-        // tabIndex="-1"
+        onClick={this.closeSelectHandler}
+        onKeyPress={this.closeSelectHandler}
+        tabIndex="-1"
+        role="button"
       >
-        <div className={`${prefixCls}-filter-select-list`}>{selectList}</div>
-      </section>
+        <div
+          className={`${prefixCls}-filter-select-list`}
+          onClick={e => e.stopPropagation()}
+          onKeyPress={e => e.stopPropagation()}
+          tabIndex="-1"
+          role="button"
+        >
+          {selectList}
+        </div>
+      </div>
     ) : null;
 
     return (
