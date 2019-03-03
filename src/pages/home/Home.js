@@ -3,13 +3,13 @@ import React, { Component } from 'react';
 import { injectUnmout } from '@/utils/utils';
 import PropTypes from 'prop-types';
 
-import { PullToRefresh } from 'antd-mobile';
+import { PullToRefresh, Toast } from 'antd-mobile';
 
 import Tabbar from '@/components/Tabbar';
 import HomeHeader from './HomeHeader';
 
 import _ from 'lodash';
-// import api from '@/utils/api';
+import api from '@/utils/api';
 // import urlList from '@/utils/urlList';
 // import storage from '@/utils/storage';
 // import enums from '@/utils/enums';
@@ -126,7 +126,21 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // this.setState({});
+    this.testHandler();
+  }
+
+  // 登录处理
+  testHandler() {
+    const param = { id: 'aaa' };
+    Toast.loading('加载中', 0);
+    api
+      .delete('/put-test', param)
+      .then(res => {
+        Toast.hide();
+        console.log(this, res);
+        // 处理token
+      })
+      .catch(() => {});
   }
 
   filterHandler(item) {
