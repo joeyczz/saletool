@@ -34,7 +34,7 @@ jobs:
           fingerprints:
             - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
 
-      - run: ssh-keyscan -p 29797 -t rsa 104.224.131.116 >> ~/.ssh/known_hosts
+      - run: echo '[104.224.131.116]:29797 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA8w8cGglsCrHirTw1SUC1UP9+f/RHHtLvjjc+SMO0o66wUqiiuojwGI5uYyFAFjCyS4A+n+D6oAVO2o3r2rr6M=' >> ~/.ssh/known_hosts
 
       - run:
           command: |
