@@ -44,10 +44,6 @@ jobs:
             yarn build
             ls
 
-      - run:
-          name: Packaging build
-          command: zip -r build.zip build
-
       - save_cache:
           paths:
             - build
@@ -68,8 +64,6 @@ jobs:
       - restore_cache:
           key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
-      - add_ssh_keys
-
       - add_ssh_keys:
           fingerprints:
             - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
@@ -82,8 +76,8 @@ jobs:
       - run:
           name: scp build
           command: |
-            unzip build.zip
-            sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a' -P 29797 -r build.zip root@104.224.131.116:/joey/front/sale
+            ls
+            sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a' -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
 
 workflows:
   version: 2
