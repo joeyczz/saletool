@@ -61,6 +61,9 @@ jobs:
           name: upload
           command: |
             ls
+            ssh -i -p 29797 root@104.224.131.116
+            ls
+            pwd
             sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
             # scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
 
