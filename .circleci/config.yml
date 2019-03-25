@@ -28,7 +28,10 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: yarn
+          command: |
+            ls
+            yarn
+            ls
 
       - save_cache:
           paths:
@@ -38,9 +41,7 @@ jobs:
       - run:
           name: Building
           command: |
-            yarn
             yarn build
-            pwd
             ls
 
       - run:
@@ -64,11 +65,6 @@ jobs:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
 
-      - run:
-          name: upload
-          command: |
-            scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
-
       - restore_cache:
           key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
@@ -77,6 +73,11 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
+
+      # - run:
+      #     name: upload
+      #     command: |
+      #       scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
 
       - run:
           name: scp build
