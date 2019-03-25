@@ -30,20 +30,69 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - add_ssh_keys
-
       - run:
-          command: |
-            yarn
-            yarn build
-            pwd
-            ls
-      - run:
-          name: upload
-          command: |
-            scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
+          name: Install dependencies
+          command: yarn
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Building
+          command: |
+            yarn
+            yarn build
+            pwd
+            ls
+
+      - run:
+          name: Packaging build
+          command: zip -r build.zip build
+
+      - save_cache:
+          paths:
+            - build
+          key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+
+  deploy:
+    working_directory: ~/sale
+
+    docker:
+      - image: circleci/node:lts
+
+    steps:
+      # show current branch
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+
+      - run:
+          name: upload
+          command: |
+            scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
+
+      - restore_cache:
+          key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+
+      - add_ssh_keys
+
+      - add_ssh_keys:
+            fingerprints:
+              - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
+
+      - run:
+          name: scp build
+          command: |
+            # unzip build.zip
+            sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a' -P 29797 -r build.zip root@104.224.131.116:/joey/front/sale
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy
+          requires:
+            - build
