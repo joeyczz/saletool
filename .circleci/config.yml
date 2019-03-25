@@ -69,7 +69,6 @@ jobs:
 
 #   deploy:
 #     working_directory: ~/sale
-
 #     docker:
 #       - image: circleci/node:lts
 
