@@ -16,10 +16,6 @@ jobs:
 
     working_directory: ~/sale
 
-    branches:
-      only:
-        - master
-
     steps:
       - checkout
 
@@ -96,3 +92,7 @@ workflows:
       - deploy:
           requires:
             - build
+        filters:
+          branches:
+            only:
+              - master
