@@ -16,6 +16,10 @@ jobs:
 
     working_directory: ~/sale
 
+    branches:
+      only:
+        - master
+
     steps:
       - checkout
 
@@ -49,45 +53,56 @@ jobs:
             - build
           key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
-  deploy:
-    working_directory: ~/sale
-
-    docker:
-      - image: circleci/node:lts
-
-    steps:
-      # show current branch
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
-
-      - restore_cache:
-          key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-
       - add_ssh_keys:
           fingerprints:
             - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
 
-      # - run:
-      #     name: upload
-      #     command: |
-      #       scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
-
       - run:
-          name: scp build
+          name: upload
           command: |
             ls
-            sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a' -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
+            sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
+            # scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
 
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
+#   deploy:
+#     working_directory: ~/sale
+
+#     docker:
+#       - image: circleci/node:lts
+
+#     steps:
+#       # show current branch
+#       - run:
+#           name: Show current branch
+#           command: echo ${CIRCLE_BRANCH}
+
+#       - restore_cache:
+#           key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+
+#       - add_ssh_keys:
+#           fingerprints:
+#             - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
+
+#       # - run:
+#       #     name: upload
+#       #     command: |
+#       #       scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
+
+#       - run:
+#           name: scp build
+#           command: |
+#             ls
+#             sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a' -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
+
+# workflows:
+#   version: 2
+#   build-and-deploy:
+#     jobs:
+#       - build
+#       - deploy:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only:
+#                 - master
