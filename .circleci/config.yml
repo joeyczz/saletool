@@ -30,6 +30,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      - add_ssh_keys:
+          fingerprints:
+            - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
+
+      - run: ssh-keyscan 104.224.131.116:29797 >> ~/.ssh/known_hosts
+
       - run:
           command: |
             yarn
