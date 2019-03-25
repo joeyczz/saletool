@@ -81,7 +81,7 @@ jobs:
       - run:
           name: scp build
           command: |
-            # unzip build.zip
+            unzip build.zip
             sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a' -P 29797 -r build.zip root@104.224.131.116:/joey/front/sale
 
 workflows:
