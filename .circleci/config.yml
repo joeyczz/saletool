@@ -79,8 +79,8 @@ jobs:
       - add_ssh_keys
 
       - add_ssh_keys:
-            fingerprints:
-              - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
+          fingerprints:
+            - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
 
       - run:
           name: scp build
@@ -92,7 +92,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
-      - deploy
+      - build:
+      - deploy:
           requires:
             - build
