@@ -30,11 +30,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - add_ssh_keys:
-          fingerprints:
-            - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
-
-      - run: echo '[104.224.131.116]:29797 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA8w8cGglsCrHirTw1SUC1UP9+f/RHHtLvjjc+SMO0o66wUqiiuojwGI5uYyFAFjCyS4A+n+D6oAVO2o3r2rr6M=' >> ~/.ssh/known_hosts
+      - add_ssh_keys
 
       - run:
           command: |
@@ -42,6 +38,10 @@ jobs:
             yarn build
             pwd
             ls
+      - run:
+          name: upload
+          command: |
+            # echo '[104.224.131.116]:29797 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBA8w8cGglsCrHirTw1SUC1UP9+f/RHHtLvjjc+SMO0o66wUqiiuojwGI5uYyFAFjCyS4A+n+D6oAVO2o3r2rr6M=' >> ~/.ssh/known_hosts
             scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
 
       - save_cache:
