@@ -14,7 +14,11 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+    working_directory: ~/sale
+
+    branches:
+      only:
+        - master
 
     steps:
       - checkout
@@ -26,8 +30,13 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn
-
+      - run: 
+          command: |
+            yarn
+            yarn build
+            pwd
+            ls
+            
       - save_cache:
           paths:
             - node_modules
