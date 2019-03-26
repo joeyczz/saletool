@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/joeyczz/saletool.svg?style=svg)](https://circleci.com/gh/joeyczz/saletool)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
