@@ -64,8 +64,7 @@ jobs:
           command: |
             ls
             pwd
-            # sudo scp -i ~/.ssh/id_rsa_c09d8573d572e15383e95f940de6ce32 -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
-            sudo scp -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
+            sudo scp -i ~/.ssh/id_rsa_c09d8573d572e15383e95f940de6ce32 -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
 
 #   deploy:
 #     working_directory: ~/sale
