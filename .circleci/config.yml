@@ -66,5 +66,5 @@ jobs:
           command: |
             ls
             pwd
-            ssh -p 29797 root@104.224.131.116 "/joey/front/script/sale-clean"
+            ssh -p 29797 root@104.224.131.116 "/joey/front/script/sale-clean.sh"
             scp -i ~/.ssh/id_rsa_c09d8573d572e15383e95f940de6ce32 -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
