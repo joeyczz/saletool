@@ -57,14 +57,14 @@ jobs:
           fingerprints:
             - 'c0:9d:85:73:d5:72:e1:53:83:e9:5f:94:0d:e6:ce:32'
 
+      - run: ssh-keyscan -p 29797 104.224.131.116  >> ~/.ssh/known_hosts
+
       - run:
           name: upload
           command: |
             ls
-            ssh -i -p 29797 root@104.224.131.116
-            ls
             pwd
-            sudo scp -i -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
+            sudo scp -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
             # scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
 
 #   deploy:
