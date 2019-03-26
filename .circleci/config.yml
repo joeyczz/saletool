@@ -55,7 +55,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints:
-            - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
+            - 'c0:9d:85:73:d5:72:e1:53:83:e9:5f:94:0d:e6:ce:32'
 
       - run:
           name: upload
@@ -64,7 +64,7 @@ jobs:
             ssh -i -p 29797 root@104.224.131.116
             ls
             pwd
-            sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
+            sudo scp -i -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
             # scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
 
 #   deploy:
