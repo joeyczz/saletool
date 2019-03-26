@@ -57,14 +57,14 @@ jobs:
           fingerprints:
             - 'c0:9d:85:73:d5:72:e1:53:83:e9:5f:94:0d:e6:ce:32'
 
-      # - run: ssh-keyscan -p 29797 104.224.131.116  >> ~/.ssh/known_hosts
-
+      - run: ssh-keyscan -p 29797 104.224.131.116  >> ~/.ssh/known_hosts
       - run:
           name: upload
           command: |
             ls
             pwd
-            sudo scp -i ~/.ssh/id_rsa_c09d8573d572e15383e95f940de6ce32 -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
+            # echo '[104.224.131.116]:29797 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+            scp -i ~/.ssh/id_rsa_c09d8573d572e15383e95f940de6ce32 -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
 
 #   deploy:
 #     working_directory: ~/sale
