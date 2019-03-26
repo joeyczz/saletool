@@ -21,6 +21,7 @@ jobs:
         - master
 
     steps:
+      # 检出代码
       - checkout
 
       # Download and cache dependencies
@@ -30,6 +31,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # 安装依赖
       - run:
           name: Install dependencies
           command: |
@@ -37,73 +39,32 @@ jobs:
             yarn
             ls
 
+      # 缓存依赖
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # build代码
       - run:
           name: Building
           command: |
             yarn build
             ls
 
-      - save_cache:
-          paths:
-            - build
-          key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-
+      # ssh key
       - add_ssh_keys:
           fingerprints:
             - 'c0:9d:85:73:d5:72:e1:53:83:e9:5f:94:0d:e6:ce:32'
 
+      # known_hosts
       - run: ssh-keyscan -p 29797 104.224.131.116  >> ~/.ssh/known_hosts
+
+      # 上传
       - run:
           name: upload
           command: |
             ls
             pwd
-            # echo '[104.224.131.116]:29797 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=='
+            ssh -p 29797 root@104.224.131.116 "/joey/front/script/sale-clean"
             scp -i ~/.ssh/id_rsa_c09d8573d572e15383e95f940de6ce32 -P 29797 -r build/* root@104.224.131.116:/joey/front/sale
-
-#   deploy:
-#     working_directory: ~/sale
-#     docker:
-#       - image: circleci/node:lts
-
-#     steps:
-#       # show current branch
-#       - run:
-#           name: Show current branch
-#           command: echo ${CIRCLE_BRANCH}
-
-#       - restore_cache:
-#           key: v1-build-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-
-#       - add_ssh_keys:
-#           fingerprints:
-#             - '07:e7:6a:a6:80:4e:d0:b5:f0:80:cc:b3:2c:2f:37:4a'
-
-#       # - run:
-#       #     name: upload
-#       #     command: |
-#       #       scp -r -P 29797 ./build/* root@104.224.131.116:/joey/front/sale
-
-#       - run:
-#           name: scp build
-#           command: |
-#             ls
-#             sudo scp -i ~/.ssh/id_rsa_07e76aa6804ed0b5f080ccb32c2f374a' -P 29797 -r /build/* root@104.224.131.116:/joey/front/sale
-
-# workflows:
-#   version: 2
-#   build-and-deploy:
-#     jobs:
-#       - build
-#       - deploy:
-#           requires:
-#             - build
-#           filters:
-#             branches:
-#               only:
-#                 - master
